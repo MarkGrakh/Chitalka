@@ -19,7 +19,7 @@ const AIAssist = (function () {
     apiKey: '',
     folderId: '',
     model: 'yandexgpt-lite', // или 'yandexgpt'
-    endpoint: 'https://llm.api.cloud.yandex.net/foundationModels/v1/completion',
+    endpoint: 'https://corsproxy.io/?https://llm.api.cloud.yandex.net/foundationModels/v1/completion',
     timeoutMs: 15000
   };
 
