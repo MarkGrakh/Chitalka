@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Читательский навигатор</title>
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="./index.html" class="logo">
+        <span class="logo-icon">📚</span>
+        <span class="logo-text">Читательский навигатор</span>
+      </a>
+      <nav class="nav">
+        <a href="./index.html" class="nav-link active">Поиск</a>
+        <a href="./librarian.html" class="nav-link">Для библиотекаря</a>
+        <button id="settingsButton" class="nav-icon-btn" title="Настройки ИИ">⚙️</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1>Найдите книгу под настроение</h1>
+      <p class="hero-sub">
+        Опишите, что хотите почитать, сфотографируйте обложку или скажите голосом —
+        мы подберём книги из фонда библиотеки.
+      </p>
+    </section>
+
+    <section class="search-box">
+      <div class="search-row">
+        <input
+          type="text"
+          id="searchInput"
+          class="search-input"
+          placeholder="Например: весёлые рассказы про дружбу..."
+          autocomplete="off"
+        />
+        <button id="micButton" class="btn btn-mic" title="Голосовой ввод">🎤</button>
+        <button id="searchButton" class="btn btn-primary">Найти</button>
+      </div>
+
+      <div class="search-extra">
+	  <label for="photoInput" class="btn btn-photo">
+	    🖼️ Выбрать из галереи
+	    <input type="file" id="photoInput" accept="image/*" hidden />
+	  </label>
+	  <label for="cameraInput" class="btn btn-photo" id="cameraButtonLabel" hidden>
+	    📷 Сделать снимок
+	    <input type="file" id="cameraInput" accept="image/*" capture="environment" hidden />
+	  </label>
+	  <span id="photoStatus" class="photo-status"></span>
+	  <button id="clearButton" class="btn btn-ghost">Очистить историю</button>
+	</div>
+
+	<!-- Предпросмотр перед распознаванием -->
+	<div id="photoPreview" class="photo-preview" hidden>
+	  <div class="photo-preview-inner">
+	    <img id="photoPreviewImg" alt="Предпросмотр фото обложки" />
+	    <div class="photo-preview-actions">
+	      <button id="photoConfirm" class="btn btn-primary">🔍 Распознать</button>
+	      <button id="photoCancel" class="btn btn-ghost">Отмена</button>
+	    </div>
+	  </div>
+	</div>
+
+      <div id="voiceStatus" class="voice-status"></div>
+    </section>
+
+    <section id="trajectoryBlock" class="trajectory-block" hidden>
+      <div class="trajectory-inner">
+        <div class="trajectory-icon">🧭</div>
+        <div class="trajectory-content">
+          <h3 id="trajectoryTitle">Рекомендация для вас</h3>
+          <p id="trajectoryReason"></p>
+          <div id="trajectoryBooks" class="books-grid"></div>
+          <button id="trajectoryHide" class="btn btn-ghost">Скрыть</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="resultsSection" class="results-section" hidden>
+      <div class="results-header">
+        <h2 id="resultsTitle">Результаты поиска</h2>
+        <span id="resultsCount" class="results-count"></span>
+      </div>
+      <div id="resultsGrid" class="books-grid"></div>
+      <div id="noResults" class="no-results" hidden>
+        <p>😔 Ничего не нашлось. Попробуйте другой запрос или сфотографируйте обложку.</p>
+      </div>
+    </section>
+
+    <section id="profileSection" class="profile-section">
+      <h2>Ваш читательский профиль</h2>
+      <div id="profileContent" class="profile-content">
+        <p class="muted">Пока нет данных. Найдите несколько книг — и мы построим вашу траекторию.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2026 Читательский навигатор. Региональный проект цифрового развития.</p>
+    </div>
+  </footer>
+
+  <!-- Внешние библиотеки -->
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+
+  <!-- Наши скрипты -->
+  <script src="./js/ui.js"></script>
+  <script src="./js/storage.js"></script>
+  <script src="./js/levenshtein.js"></script>
+  <script src="./js/tfidf.js"></script>
+  <script src="./js/search-text.js"></script>
+  <script src="./js/search-voice.js"></script>
+  <script src="./js/search-photo.js"></script>
+  <script src="./js/trajectory.js"></script>
+  <script src="./js/ai-assist.js"></script>
+  <script src="./js/app.js"></script>
+</body>
+</html>
